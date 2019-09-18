@@ -2,11 +2,12 @@ package com.sg.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.sg.common.serializer.DateDeSerializer;
 import com.sg.domain.Gender;
 
-import lombok.Setter;
-
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author shpatel
@@ -22,6 +23,7 @@ public class EmployeeDTO {
 
 	private Gender gender;
 
+	@JsonDeserialize(using = DateDeSerializer.class)
 	private LocalDate dateOfBirth;
 
 	private String department;
