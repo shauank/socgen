@@ -22,16 +22,15 @@ public class EmployeeService {
 	/**
 	 * @param employee Create employee
 	 */
-	public void createEmployee(Employee employee) {
-		
-		
+	public Employee createEmployee(Employee employee) {
+		return employeeRepository.save(employee);
 	}
 	
 	/**
 	 * @return List of employee
 	 */
 	public List<Employee> findAll(){
-		return null;
+		return employeeRepository.findAllByOrderByFirstNameAsc();
 	}
 
 }

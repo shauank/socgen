@@ -2,6 +2,8 @@ package com.sg.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +22,8 @@ public class EmployeeController {
 	 * Create employee object from @param employeeDTO 
 	 */
 	@PostMapping
-	public void createEmployee(@RequestBody EmployeeDTO employeeDTO) {
-		
+	public ResponseEntity<Object> createEmployee(@RequestBody EmployeeDTO employeeDTO) {
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	/**
