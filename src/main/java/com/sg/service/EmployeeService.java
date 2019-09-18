@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sg.domain.Employee;
+import com.sg.exception.EmployeeNotFoundException;
 import com.sg.repository.EmployeeRepository;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author shpatel
@@ -14,6 +17,7 @@ import com.sg.repository.EmployeeRepository;
  * Service class for Employee
  */
 @Service
+@Slf4j
 public class EmployeeService {
 	
 	@Autowired
@@ -23,6 +27,7 @@ public class EmployeeService {
 	 * @param employee Create employee
 	 */
 	public Employee createEmployee(Employee employee) {
+		log.info("Creating employee");
 		return employeeRepository.save(employee);
 	}
 	
@@ -30,7 +35,11 @@ public class EmployeeService {
 	 * @return List of employee
 	 */
 	public List<Employee> findAll(){
-		return employeeRepository.findAllByOrderByFirstNameAsc();
+		log.info("Retrieving all employees");
+		List<Employee> employeeList = employeeRepository.findAllByOrderByFirstNameAsc();
+		if(employeeList.isEmpty()) {
+			throw new EmployeeNotFoundException("Could not found employee");
+		}
+		return employeeList;
 	}
-
 }
